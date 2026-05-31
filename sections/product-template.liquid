@@ -66,11 +66,12 @@
 
       {% if product.variants.size > 1 %}
       <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
-        {% if product.options.size > 0 and product.options[0].name == 'Colore' %}
+        {% assign color_option = product.options | where: "name", "Colore" | first %}
+        {% if color_option %}
         <div>
           <label>COLORE: <strong>{{ product.selected_or_first_available_variant.option1 }}</strong></label>
           <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-            {% for value in product.options[0].values %}
+            {% for value in color_option.values %}
             <button type="button" onclick="selectColor('{{ value }}')" class="color-swatch {% if value == product.selected_or_first_available_variant.option1 %}active{% endif %}" data-color="{{ value }}" style="width:44px;height:44px;border-radius:50%;border:3px solid {% if value == product.selected_or_first_available_variant.option1 %}var(--brand-blue){% else %}var(--brand-border){% endif %};background:{% if value == 'Nero' %}#1a1a1a{% elsif value == 'Blu' %}#1F69F0{% else %}#e53e3e{% endif %};cursor:pointer;transition:border-color .2s;" title="{{ value }}"></button>
             {% endfor %}
           </div>
