@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VertiKnee — Professional Knee Support for Trekkers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root { --brand-blue:#1F69F0; --brand-dark:#101723; --brand-white:#FFFFFF; --brand-light:#f5f7fa; --brand-gray:#6b7280; --brand-border:#e5e7eb; --radius:10px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',system-ui,sans-serif; background:var(--brand-white); color:var(--brand-dark); line-height:1.6; -webkit-font-smoothing:antialiased; }
+.container { max-width:1240px; margin:0 auto; padding:0 24px; }
+
+/* Announcement */
+.ann { background:var(--brand-dark); color:var(--brand-white); text-align:center; padding:10px; font-size:13px; font-weight:600; letter-spacing:.5px; }
+
+/* Header */
+.header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--brand-border); background:var(--brand-white); position:sticky; top:0; z-index:100; }
+.header-logo { height:36px; }
+.header-logo img { height:100%; }
+.header-cta { background:var(--brand-blue); color:var(--brand-white); border:none; padding:12px 28px; border-radius:6px; font-weight:700; font-size:14px; text-decoration:none; transition:opacity .2s; }
+.header-cta:hover { opacity:.9; }
+
+/* Hero */
+.hero { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:80px 0; }
+.hero-content h1 { font-family:'Montserrat',sans-serif; font-size:clamp(32px,5vw,52px); font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:16px; color:var(--brand-dark); }
+.hero-content h1 .blue { color:var(--brand-blue); }
+.hero-tagline { font-size:16px; color:var(--brand-gray); margin-bottom:32px; letter-spacing:4px; text-transform:uppercase; }
+.hero-bullets { display:flex; gap:24px; margin-bottom:40px; flex-wrap:wrap; }
+.hero-bullet { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--brand-dark); }
+.hero-bullet svg { width:20px; height:20px; color:var(--brand-blue); flex-shrink:0; }
+.cta-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.cta-btn { display:inline-block; background:var(--brand-blue); color:#fff; padding:16px 48px; border-radius:8px; font-size:18px; font-weight:700; text-decoration:none; transition:transform .2s, box-shadow .2s; box-shadow:0 4px 14px rgba(31,105,240,.3); }
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(31,105,240,.4); }
+.cta-sub { font-size:14px; color:var(--brand-gray); }
+.cta-strike { text-decoration:line-through; margin-right:6px; }
+.hero-media { width:100%; aspect-ratio:1; background:var(--brand-light); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero-media img { width:100%; height:100%; object-fit:cover; }
+
+/* Cookie */
+.cookie-bar { position:fixed; bottom:0; left:0; right:0; background:var(--brand-white); border-top:1px solid var(--brand-border); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; z-index:200; box-shadow:0 -4px 20px rgba(0,0,0,.08); font-size:14px; flex-wrap:wrap; }
+.cookie-bar p { color:var(--brand-gray); max-width:600px; }
+.cookie-btns { display:flex; gap:8px; flex-shrink:0; }
+.cookie-accept { background:var(--brand-blue); color:#fff; border:none; padding:10px 24px; border-radius:6px; font-weight:600; font-size:13px; cursor:pointer; }
+.cookie-decline { background:var(--brand-light); color:var(--brand-gray); border:1px solid var(--brand-border); padding:10px 24px; border-radius:6px; font-size:13px; cursor:pointer; }
+
+/* Features */
+.features { padding:80px 0; background:var(--brand-light); }
+.ft-title { text-align:center; font-family:'Montserrat',sans-serif; font-size:clamp(24px,4vw,30px); font-weight:800; margin-bottom:48px; letter-spacing:-.5px; color:var(--brand-dark); }
+.ft-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.ft-card { background:var(--brand-white); border-radius:var(--radius); padding:36px 28px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.06); transition:box-shadow .3s; }
+.ft-card:hover { box-shadow:0 4px 16px rgba(31,105,240,.12); }
+.ft-icon { font-size:36px; margin-bottom:16px; }
+.ft-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:var(--brand-dark); }
+.ft-card p { font-size:14px; color:var(--brand-gray); line-height:1.5; }
+
+/* Reviews */
+.rv { padding:80px 0; background:var(--brand-dark); }
+.rv-title { text-align:center; font-family:'Montserrat',sans-serif; font-size:clamp(24px,4vw,30px); font-weight:800; margin-bottom:48px; color:var(--brand-white); }
+.rv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.rv-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:28px; }
+.rv-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.rv-avatar { width:40px; height:40px; border-radius:50%; background:var(--brand-blue); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#fff; }
+.rv-name { font-size:14px; font-weight:600; color:var(--brand-white); }
+.rv-verified { font-size:11px; color:#22c55e; }
+.rv-stars { color:#f59e0b; font-size:14px; margin-bottom:8px; }
+.rv-text { font-size:14px; color:rgba(255,255,255,.6); font-style:italic; line-height:1.6; }
+
+/* FAQ */
+.faq { padding:80px 0; }
+.faq-title { text-align:center; font-family:'Montserrat',sans-serif; font-size:clamp(24px,4vw,30px); font-weight:800; margin-bottom:48px; }
+.faq-list { max-width:720px; margin:0 auto; }
+.faq-item { border-bottom:1px solid var(--brand-border); padding:20px 0; }
+.faq-q { font-size:16px; font-weight:600; margin-bottom:4px; color:var(--brand-dark); }
+.faq-a { font-size:14px; color:var(--brand-gray); line-height:1.6; }
+
+/* Footer */
+.ftr { background:var(--brand-dark); padding:40px 0; text-align:center; font-size:13px; color:rgba(255,255,255,.5); }
+.ftr-links { display:flex; justify-content:center; gap:24px; margin-bottom:16px; flex-wrap:wrap; }
+.ftr-links a { color:rgba(255,255,255,.5); text-decoration:none; transition:color .2s; }
+.ftr-links a:hover { color:var(--brand-white); }
+
+@media (max-width:768px) {
+  .hero { grid-template-columns:1fr; padding:40px 0; gap:32px; }
+  .ft-grid, .rv-grid { grid-template-columns:1fr; }
+  .cookie-bar { flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="ann">🏔️ FREE SHIPPING ON ALL ORDERS — 30-DAY TRAIL GUARANTEE</div>
+
+<!-- Header -->
+<nav class="header">
+  <a href="/" class="header-logo">
+    <img src="logo-full-color.jpg" alt="VertiKnee">
+  </a>
+  <a href="#" class="header-cta">SHOP NOW</a>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="container hero">
+    <div class="hero-content">
+      <h1><span class="blue">GO HIGHER.</span><br>GO FARTHER.<br>WITHOUT PAIN.</h1>
+      <div class="hero-tagline">Professional Knee Support for Trekkers</div>
+      <div class="hero-bullets">
+        <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>3D Compression</div>
+        <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Anti-Slip Grip</div>
+        <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Ultralight 80g</div>
+      </div>
+      <div class="cta-row">
+        <a href="#" class="cta-btn">GET YOURS — €24.99</a>
+        <span class="cta-sub"><span class="cta-strike">€49.99</span> 50% OFF</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="hero.jpg" alt="VertiKnee on mountain trail">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 class="ft-title">Why VertiKnee™</h2>
+      <div class="ft-grid">
+        <div class="ft-card"><div class="ft-icon">🧬</div><h3>3D Anatomic Compression</h3><p>Targets the patellar tendon with precision — reduces the exact impact that causes downhill knee pain.</p></div>
+        <div class="ft-card"><div class="ft-icon">🫁</div><h3>Breathable Tech Fabric</h3><p>Moisture-wicking 4-way stretch. Stays dry and comfortable after 8+ hours on the trail.</p></div>
+        <div class="ft-card"><div class="ft-icon">🛡️</div><h3>Anti-Slip Silicone Grip</h3><p>Inner gel strips lock the sleeve in place. Never rolls down mid-hike.</p></div>
+        <div class="ft-card"><div class="ft-icon">⚡</div><h3>Ultralight 80g</h3><p>You'll forget you're wearing it — until you realize you've done 15km pain-free.</p></div>
+        <div class="ft-card"><div class="ft-icon">🎒</div><h3>Packs Flat</h3><p>Roll it, fold it, clip it to your pack. Zero bulk. Always trail-ready.</p></div>
+        <div class="ft-card"><div class="ft-icon">🔄</div><h3>30-Day Trail Guarantee</h3><p>Take it on 3 hikes. If your knees don't feel better, full refund. No questions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="rv">
+    <div class="container">
+      <h2 class="rv-title">What Trekkers Say</h2>
+      <div class="rv-grid">
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">MT</div><div><div class="rv-name">Marco T.</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"Descended 1200 meters without stopping. First time in 3 years. This changed everything."</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">SL</div><div><div class="rv-name">Sarah L.</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"I was skeptical. 4 hikes later, I bought one for my other knee. Swiss Alps tested and approved."</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">JP</div><div><div class="rv-name">Jean-Pierre</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"At 58, I thought my trekking days were over. VertiKnee proved me wrong. Merci."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq container">
+    <h2 class="faq-title">FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">How do I know which size to order?</div><div class="faq-a">Measure your knee 10cm above the kneecap. S (30-34cm), M (34-38cm), L (38-42cm). When in doubt, size down for a secure compression fit.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I wear it on both knees?</div><div class="faq-a">Yes — each sleeve is sold individually. Many hikers buy the 2-pack for both knees and save 20%.</div></div>
+      <div class="faq-item"><div class="faq-q">Does it work for trail running?</div><div class="faq-a">Absolutely. The anti-slip grip keeps it firmly in place even during high-impact technical descents.</div></div>
+      <div class="faq-item"><div class="faq-q">How long does delivery take?</div><div class="faq-a">7-11 working days to Europe and North America. Free tracked shipping on all orders.</div></div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="ftr">
+  <div class="ftr-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Shipping Info</a>
+    <a href="#">Contact</a>
+  </div>
+  <p>© 2025 VertiKnee. All rights reserved.</p>
+</footer>
+
+<!-- Cookie (hidden by default, shown for preview) -->
+<div class="cookie-bar" id="cookieBar">
+  <p>🍪 Questo sito utilizza cookie per migliorare l'esperienza di navigazione.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="document.getElementById('cookieBar').style.display='none'">Accetta</button>
+    <button class="cookie-decline" onclick="document.getElementById('cookieBar').style.display='none'">Rifiuta</button>
+  </div>
+</div>
+
+</body>
+</html>
