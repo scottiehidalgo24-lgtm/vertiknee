@@ -1,8 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "product-template": { "type": "product-template" },
-    "reviews": { "type": "reviews" },
-    "faq": { "type": "faq" }
+    "product-template": {
+      "type": "product-template",
+      "settings": {}
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {}
+    }
   },
-  "order": ["product-template", "reviews", "faq"]
+  "order": [
+    "product-template",
+    "guarantee",
+    "faq"
+  ]
 }

@@ -1,0 +1,38 @@
+<style>
+.cta-final { padding:80px 0;background:var(--brand-dark);text-align:center;color:var(--brand-white); }
+.cta-final h2 { font-family:'Montserrat',sans-serif;font-size:clamp(26px,4vw,34px);font-weight:900;margin-bottom:12px; }
+.cta-final-sub { font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px; }
+.cta-final-btn { display:inline-block;background:var(--brand-blue);color:#fff;padding:20px 52px;border-radius:8px;font-size:18px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(31,105,240,.4);transition:transform .2s; }
+.cta-final-btn:hover { transform:translateY(-2px); }
+.cta-final-trust { font-size:13px;color:rgba(255,255,255,.4);margin-top:16px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap; }
+.email-capture { max-width:420px;margin:48px auto 0;padding:32px;background:rgba(255,255,255,.05);border-radius:var(--radius);border:1px solid rgba(255,255,255,.08); }
+.email-capture p { font-size:14px;color:rgba(255,255,255,.5);margin-bottom:16px; }
+.email-form { display:flex;gap:8px; }
+.email-form input { flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:12px 16px;border-radius:6px;font-size:14px; }
+.email-form input::placeholder { color:rgba(255,255,255,.3); }
+.email-form button { background:var(--brand-blue);color:#fff;border:none;padding:12px 24px;border-radius:6px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;transition:opacity .2s; }
+.email-form button:hover { opacity:.9; }
+@media (max-width:768px) { .cta-final { padding:48px 0; } .email-form { flex-direction:column; } }
+</style>
+
+<section class="cta-final">
+  <div class="container">
+    <h2>LA VETTA È SOLO<br>METÀ DEL PERCORSO.</h2>
+    <p class="cta-final-sub">Non lasciare che la discesa rovini ciò che ami fare.</p>
+    <a href="#offer" class="cta-final-btn">PREPARATI ALLA PROSSIMA ESCURSIONE — DA €24,99</a>
+    <div class="cta-final-trust">
+      <span>🚚 Spedizione Tracciata</span>
+      <span>🔄 Prova 30 Giorni</span>
+      <span>📏 Cambio Taglia Semplice</span>
+    </div>
+
+    <div class="email-capture">
+      <p>Non sei ancora pronto per il prossimo sentiero?<br>Lascia la tua email e ricevi un vantaggio riservato sul primo ordine.</p>
+      <div class="email-form">
+        <input type="email" placeholder="La tua email" aria-label="Email">
+        <button type="submit">VOGLIO IL VANTAGGIO</button>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Final CTA + Email","settings":[],"presets":[{"name":"Final CTA + Email"}]}{% endschema %}

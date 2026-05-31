@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page_title }}{% if current_tags %} – tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} – Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}</title>
   {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
   {{ content_for_header }}
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
@@ -19,22 +19,56 @@
       --brand-gray: #6b7280;
       --brand-border: #e5e7eb;
       --radius: 10px;
+      --sticky-height: 56px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--brand-white);
       color: var(--brand-dark);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: var(--sticky-height);
     }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+    /* Sticky mobile CTA */
+    .sticky-cta { position:fixed;bottom:0;left:0;right:0;background:var(--brand-dark);padding:10px 16px;display:none;z-index:300;align-items:center;justify-content:space-between; }
+    .sticky-cta-price { color:#fff;font-weight:700;font-size:15px; }
+    .sticky-cta-btn { background:var(--brand-blue);color:#fff;padding:10px 20px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap; }
+    @media (max-width:768px) { .sticky-cta { display:flex; } }
+
+    /* Cookie — minimal */
+    .cookie-mini { position:fixed;bottom:var(--sticky-height);left:0;right:0;background:rgba(16,23,35,.95);color:rgba(255,255,255,.8);padding:10px 16px;font-size:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:299; }
+    .cookie-mini button { background:var(--brand-blue);color:#fff;border:none;padding:6px 16px;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap; }
+    @media (max-width:768px) { .cookie-mini { bottom:calc(var(--sticky-height) + 0px);flex-wrap:wrap; } }
   </style>
 </head>
 <body>
-  {% section 'announcement-bar' %}
-  {% section 'header' %}
   <main>{{ content_for_layout }}</main>
   {% section 'footer' %}
+
+  <!-- Sticky Mobile CTA -->
+  <div class="sticky-cta">
+    <span class="sticky-cta-price">VertiKnee — da €24,99</span>
+    <a href="#offer" class="sticky-cta-btn">PREPARATI ALLA DISCESA</a>
+  </div>
+
+  <!-- Cookie -->
+  <div class="cookie-mini" id="cookieBar">
+    <span>🍪 Usiamo cookie tecnici per il funzionamento del sito.</span>
+    <button onclick="document.getElementById('cookieBar').style.display='none'">OK</button>
+  </div>
+
+  <!-- Hide Shopify native cookie consent (we have our own) -->
+  <style>
+    #shopify-block-consent,
+    [data-privacy-consent-banner],
+    .shopify-privacy-consent,
+    [aria-label*="cookie" i] {
+      display: none !important;
+    }
+  </style>
 </body>
 </html>

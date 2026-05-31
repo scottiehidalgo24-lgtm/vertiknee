@@ -1,0 +1,58 @@
+<style>
+.benefits { padding:80px 0;background:var(--brand-light); }
+.benefits h2 { text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(26px,4vw,32px);font-weight:800;margin-bottom:48px;letter-spacing:-.5px;color:var(--brand-dark); }
+.ben-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px; }
+.ben-card { background:var(--brand-white);border-radius:var(--radius);padding:36px 28px;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:box-shadow .3s; }
+.ben-card:hover { box-shadow:0 4px 16px rgba(31,105,240,.12); }
+.ben-card h3 { font-size:18px;font-weight:700;margin-bottom:8px;color:var(--brand-dark); }
+.ben-card p { font-size:14px;color:var(--brand-gray);line-height:1.6;margin-bottom:8px; }
+.ben-spec { font-size:11px;color:var(--brand-blue);font-weight:600;text-transform:uppercase;letter-spacing:.5px; }
+.ben-secondary { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+.ben-sm { background:var(--brand-white);border-radius:8px;padding:20px 18px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.04); }
+.ben-sm h4 { font-size:14px;font-weight:700;margin-bottom:4px;color:var(--brand-dark); }
+.ben-sm p { font-size:13px;color:var(--brand-gray); }
+@media (max-width:768px) {
+  .ben-grid,.ben-secondary { grid-template-columns:1fr; }
+  .benefits { padding:48px 0; }
+}
+</style>
+
+<section class="benefits">
+  <div class="container">
+    <h2>PERCHÉ OLTRE 5.000 ESCURSIONISTI<br>L'HANNO GIÀ SCELTA.</h2>
+
+    <div class="ben-grid">
+      <div class="ben-card">
+        <h3>Supporto proprio quando inizia la discesa</h3>
+        <p>La compressione avvolge il ginocchio nei tratti in cui senti maggiormente la pressione del percorso.</p>
+        <div class="ben-spec">Compressione anatomica 3D</div>
+      </div>
+      <div class="ben-card">
+        <h3>Rimane stabile mentre cammini</h3>
+        <p>La fascia interna antiscivolo aiuta a mantenerla in posizione, senza costringerti a fermarti continuamente per sistemarla.</p>
+        <div class="ben-spec">Grip interno in silicone</div>
+      </div>
+      <div class="ben-card">
+        <h3>Comfort anche quando il percorso si allunga</h3>
+        <p>Il tessuto leggero e traspirante accompagna il movimento senza trasformare ogni passo in una costrizione.</p>
+        <div class="ben-spec">Tessuto elastico e traspirante</div>
+      </div>
+    </div>
+
+    <div class="ben-secondary">
+      <div class="ben-sm">
+        <h4>Leggera da indossare</h4>
+        <p>Supporto senza ingombro inutile.</p>
+      </div>
+      <div class="ben-sm">
+        <h4>Sempre pronta nello zaino</h4>
+        <p>Occupa poco spazio. La porti sempre con te.</p>
+      </div>
+      <div class="ben-sm">
+        <h4>Provala senza pensieri</h4>
+        <p>30 giorni per capire se è adatta alle tue esigenze.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Benefits","settings":[],"presets":[{"name":"Benefits"}]}{% endschema %}

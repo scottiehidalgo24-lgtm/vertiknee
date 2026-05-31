@@ -1,18 +1,28 @@
 <style>
-.faq { padding:80px 0; }
-.faq-title { text-align:center;font-family:'Montserrat',sans-serif;font-size:30px;font-weight:800;margin-bottom:48px; }
+.faq { padding:80px 0;background:var(--brand-light); }
+.faq h2 { text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(24px,4vw,28px);font-weight:800;margin-bottom:48px;color:var(--brand-dark); }
 .faq-list { max-width:720px;margin:0 auto; }
-.faq-item { border-bottom:1px solid var(--brand-border);padding:20px 0; }
-.faq-q { font-size:16px;font-weight:600;cursor:pointer;margin-bottom:4px; }
+.faq-item { border-bottom:1px solid var(--brand-border);padding:18px 0; }
+.faq-q { font-size:15px;font-weight:600;color:var(--brand-dark);margin-bottom:4px; }
 .faq-a { font-size:14px;color:var(--brand-gray);line-height:1.6; }
+@media (max-width:768px) { .faq { padding:48px 0; } }
 </style>
-<section class="faq container">
-  <h2 class="faq-title">FAQ</h2>
-  <div class="faq-list">
-    <div class="faq-item"><div class="faq-q">How do I know which size to order?</div><div class="faq-a">Measure your knee 10cm above the kneecap. S (30-34cm), M (34-38cm), L (38-42cm). When in doubt, size down for a secure compression fit.</div></div>
-    <div class="faq-item"><div class="faq-q">Can I wear it on both knees?</div><div class="faq-a">Yes — each sleeve is sold individually. Many hikers buy the 2-pack for both knees and save 20%.</div></div>
-    <div class="faq-item"><div class="faq-q">Does it work for trail running?</div><div class="faq-a">Absolutely. The anti-slip grip keeps it firmly in place even during high-impact technical descents.</div></div>
-    <div class="faq-item"><div class="faq-q">How long does delivery take?</div><div class="faq-a">7-11 working days to Europe and North America. Free tracked shipping on all orders.</div></div>
+
+<section id="faq" class="faq">
+  <div class="container">
+    <h2>DOMANDE FREQUENTI</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Il prezzo comprende una o due ginocchiere?</div><div class="faq-a">Puoi scegliere. Il pack da 1 pezzo include una ginocchiera. Il pack Best Value da 2 pezzi include due ginocchiere con il 20% di sconto.</div></div>
+      <div class="faq-item"><div class="faq-q">Posso utilizzarla sul ginocchio destro e sinistro?</div><div class="faq-a">Sì. VertiKnee è universale e compatibile con entrambi i ginocchi.</div></div>
+      <div class="faq-item"><div class="faq-q">Come scelgo la taglia?</div><div class="faq-a">Misura la circonferenza del ginocchio 10 cm sopra la rotula. S (30–34 cm), M (34–38 cm), L (38–42 cm). Se sei tra due taglie, scegli quella più piccola per una compressione più sicura.</div></div>
+      <div class="faq-item"><div class="faq-q">Rimane stabile durante una lunga camminata?</div><div class="faq-a">Sì. Il grip interno in silicone antiscivolo mantiene la ginocchiera in posizione anche durante discese tecniche e camminate prolungate.</div></div>
+      <div class="faq-item"><div class="faq-q">Posso indossarla sotto i pantaloni?</div><div class="faq-a">Certamente. È sottile e discreta, adatta sia sopra che sotto i pantaloni da trekking.</div></div>
+      <div class="faq-item"><div class="faq-q">È adatta anche per salite, scale e camminate quotidiane?</div><div class="faq-a">Sì. Anche se è progettata per dare il massimo supporto in discesa, puoi usarla per qualsiasi attività: salite, scale, camminate urbane e trail running.</div></div>
+      <div class="faq-item"><div class="faq-q">Come si lava?</div><div class="faq-a">Lavare a mano con acqua fredda e sapone neutro. Asciugare all'aria. Non usare asciugatrice o candeggina.</div></div>
+      <div class="faq-item"><div class="faq-q">Quanto tempo occorre per riceverla?</div><div class="faq-a">7–11 giorni lavorativi in Europa e Nord America. La spedizione è sempre tracciata.</div></div>
+      <div class="faq-item"><div class="faq-q">Come funziona il cambio taglia?</div><div class="faq-a">Semplice: contattaci entro 30 giorni, ti inviamo le istruzioni per il reso e ricevi la taglia corretta. La spedizione per il cambio è a carico nostro.</div></div>
+      <div class="faq-item"><div class="faq-q">È un dispositivo medico?</div><div class="faq-a"><strong>No.</strong> VertiKnee è un supporto sportivo a compressione e non sostituisce il parere o il trattamento di un professionista sanitario.</div></div>
+    </div>
   </div>
 </section>
 {% schema %}{"name":"FAQ","settings":[],"presets":[{"name":"FAQ"}]}{% endschema %}

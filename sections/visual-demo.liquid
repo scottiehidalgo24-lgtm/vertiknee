@@ -1,0 +1,25 @@
+<style>
+.demo { padding:80px 0;background:var(--brand-dark);color:var(--brand-white);text-align:center; }
+.demo h2 { font-family:'Montserrat',sans-serif;font-size:clamp(24px,4vw,30px);font-weight:800;margin-bottom:48px; }
+.demo-steps { display:grid;grid-template-columns:repeat(4,1fr);gap:24px; }
+.demo-step { text-align:center; }
+.demo-icon { width:64px;height:64px;margin:0 auto 16px;background:rgba(31,105,240,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px; }
+.demo-step p { font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px; }
+@media (max-width:768px) {
+  .demo-steps { grid-template-columns:repeat(2,1fr);gap:20px; }
+  .demo { padding:48px 0; }
+}
+</style>
+
+<section class="demo">
+  <div class="container">
+    <h2>INDOSSALA. STRINGI IL PASSO.<br>CONTINUA IL TUO PERCORSO.</h2>
+    <div class="demo-steps">
+      <div class="demo-step"><div class="demo-icon">🎒</div><p>La tiri fuori dallo zaino</p></div>
+      <div class="demo-step"><div class="demo-icon">🦵</div><p>La indossi in pochi secondi</p></div>
+      <div class="demo-step"><div class="demo-icon">🔒</div><p>Grip stabile, resta in posizione</p></div>
+      <div class="demo-step"><div class="demo-icon">⛰️</div><p>Continui la discesa senza pensieri</p></div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Visual Demo","settings":[],"presets":[{"name":"Visual Demo"}]}{% endschema %}

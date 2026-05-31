@@ -1,0 +1,37 @@
+<style>
+.sp { padding:80px 0;background:var(--brand-white); }
+.sp h2 { text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(24px,4vw,28px);font-weight:800;margin-bottom:8px;color:var(--brand-dark); }
+.sp-sub { text-align:center;font-size:15px;color:var(--brand-gray);margin-bottom:12px;line-height:1.5;max-width:600px;margin-left:auto;margin-right:auto; }
+.sp-stats { display:flex;justify-content:center;gap:40px;margin-bottom:40px;flex-wrap:wrap;text-align:center; }
+.sp-stat-num { font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--brand-blue); }
+.sp-stat-label { font-size:13px;color:var(--brand-gray); }
+.sp-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+.sp-card { background:var(--brand-light);border-radius:var(--radius);padding:24px; }
+.sp-stars { color:#f59e0b;font-size:14px;margin-bottom:8px; }
+.sp-text { font-size:14px;color:var(--brand-dark);font-style:italic;line-height:1.6;margin-bottom:8px; }
+.sp-author { font-size:12px;color:var(--brand-gray);font-weight:500; }
+.sp-disclaimer { text-align:center;font-size:11px;color:var(--brand-gray);margin-top:32px;opacity:.7; }
+@media (max-width:768px) { .sp-grid { grid-template-columns:1fr; } .sp-stats { gap:24px; } .sp { padding:48px 0; } }
+</style>
+
+<section class="sp">
+  <div class="container">
+    <h2>UNA SOLUZIONE GIÀ SCELTA<br>DA MIGLIAIA DI ACQUIRENTI.</h2>
+    <p class="sp-sub">Non una promessa costruita a tavolino. Un prodotto già acquistato, utilizzato e valutato positivamente da migliaia di persone.</p>
+    <div class="sp-stats">
+      <div><div class="sp-stat-num">5.000+</div><div class="sp-stat-label">Ordini registrati</div></div>
+      <div><div class="sp-stat-num">4.8 ⭐</div><div class="sp-stat-label">Valutazione media</div></div>
+      <div><div class="sp-stat-num">1.200+</div><div class="sp-stat-label">Recensioni</div></div>
+    </div>
+    <div class="sp-grid">
+      <div class="sp-card"><div class="sp-stars">★★★★★</div><p class="sp-text">"L'ho usata per un trekking di 4 giorni sulle Dolomiti. Le discese erano il mio incubo. Con questa ginocchiera ho fatto 1200 metri di dislivolo senza fermarmi. Incredibile."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+      <div class="sp-card"><div class="sp-stars">★★★★★</div><p class="sp-text">"Ero scettica. Dopo 4 escursioni, ne ho comprata una anche per l'altro ginocchio. Leggera, non scivola, la indossi e ti dimentichi di averla. Testata sulle Alpi Svizzere."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+      <div class="sp-card"><div class="sp-stars">★★★★★</div><p class="sp-text">"A 58 anni pensavo che i miei giorni di trekking fossero finiti. VertiKnee mi ha dimostrato il contrario. Finalmente scendo senza dolore. Grazie."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+      <div class="sp-card"><div class="sp-stars">★★★★★</div><p class="sp-text">"La uso da 2 mesi, 3 escursioni a settimana. Il grip funziona davvero — mai dovuto sistemarla una volta indossata. Materiale traspirante, nessun odore."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+      <div class="sp-card"><div class="sp-stars">★★★★★</div><p class="sp-text">"Consegna veloce, imballaggio perfetto. La ginocchiera è esattamente come descritta. Ho già consigliato VertiKnee a tutto il mio gruppo di trekking."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+      <div class="sp-card"><div class="sp-stars">★★★★☆</div><p class="sp-text">"Buon prodotto, ottimo supporto in discesa. Unica nota: prendete le misure con attenzione, io ho dovuto fare il cambio taglia ed è stato semplice e veloce."</p><div class="sp-author">Feedback verificato · Acquirente del prodotto</div></div>
+    </div>
+    <p class="sp-disclaimer">Recensioni tradotte da feedback verificati di acquirenti del prodotto.</p>
+  </div>
+</section>
+{% schema %}{"name":"Social Proof","settings":[],"presets":[{"name":"Social Proof"}]}{% endschema %}

@@ -1,26 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {}
-    },
-    "features": {
-      "type": "features",
-      "settings": {}
-    },
-    "benefits": {
-      "type": "reviews",
-      "settings": {}
-    },
-    "faq-section": {
-      "type": "faq",
-      "settings": {}
-    }
+    "announcement-bar": { "type": "announcement-bar", "settings": {} },
+    "header": { "type": "header", "settings": {} },
+    "hero": { "type": "hero", "settings": {} },
+    "problem-solution": { "type": "problem-solution", "settings": {} },
+    "visual-demo": { "type": "visual-demo", "settings": {} },
+    "benefits": { "type": "benefits", "settings": {} },
+    "social-proof": { "type": "social-proof", "settings": {} },
+    "offer-size-guide": { "type": "offer-size-guide", "settings": {} },
+    "guarantee": { "type": "guarantee", "settings": {} },
+    "faq": { "type": "faq", "settings": {} },
+    "final-cta": { "type": "final-cta", "settings": {} }
   },
   "order": [
+    "announcement-bar",
+    "header",
     "hero",
-    "features", 
+    "problem-solution",
+    "visual-demo",
     "benefits",
-    "faq-section"
+    "social-proof",
+    "offer-size-guide",
+    "guarantee",
+    "faq",
+    "final-cta"
   ]
 }
