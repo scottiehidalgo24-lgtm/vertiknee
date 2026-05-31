@@ -1,22 +1,23 @@
 <style>
-.reviews { padding: 80px 0; background: var(--surface); }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-.review-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
-.review-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
-.review-name { font-size: 14px; font-weight: 600; }
-.review-verified { font-size: 11px; color: var(--green); }
-.review-text { font-size: 14px; color: var(--text-dim); font-style: italic; margin-top: 8px; }
-.stars { color: #f5a623; font-size: 16px; }
-@media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+.rv { padding:80px 0;background:var(--brand-dark); }
+.rv-title { text-align:center;font-family:'Montserrat',sans-serif;font-size:30px;font-weight:800;margin-bottom:48px;color:var(--brand-white); }
+.rv-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+.rv-card { background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:28px; }
+.rv-header { display:flex;align-items:center;gap:10px;margin-bottom:12px; }
+.rv-avatar { width:40px;height:40px;border-radius:50%;background:var(--brand-blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff; }
+.rv-name { font-size:14px;font-weight:600;color:var(--brand-white); }
+.rv-verified { font-size:11px;color:#22c55e; }
+.rv-stars { color:#f59e0b;font-size:14px;margin-bottom:8px; }
+.rv-text { font-size:14px;color:rgba(255,255,255,.6);font-style:italic;line-height:1.6; }
+@media (max-width:768px) { .rv-grid { grid-template-columns:1fr; } }
 </style>
-<section class="reviews">
+<section class="rv">
   <div class="container">
-    <h2 class="section-title">What Trekkers Say</h2>
-    <div class="reviews-grid">
-      <div class="review-card"><div class="review-header"><div class="review-avatar">MT</div><div><div class="review-name">Marco T.</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"Descended 1200 meters without stopping. First time in 3 years."</p></div>
-      <div class="review-card"><div class="review-header"><div class="review-avatar">SL</div><div><div class="review-name">Sarah L.</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"4 hikes later, I bought one for my other knee too. Swiss Alps tested."</p></div>
-      <div class="review-card"><div class="review-header"><div class="review-avatar">JP</div><div><div class="review-name">Jean-Pierre</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"At 58, I thought my trekking days were over. VertiKnee proved me wrong."</p></div>
+    <h2 class="rv-title">What Trekkers Say</h2>
+    <div class="rv-grid">
+      <div class="rv-card"><div class="rv-header"><div class="rv-avatar">MT</div><div><div class="rv-name">Marco T.</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"Descended 1200 meters without stopping. First time in 3 years. This changed everything."</p></div>
+      <div class="rv-card"><div class="rv-header"><div class="rv-avatar">SL</div><div><div class="rv-name">Sarah L.</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"I was skeptical. 4 hikes later, I bought one for my other knee. Swiss Alps tested and approved."</p></div>
+      <div class="rv-card"><div class="rv-header"><div class="rv-avatar">JP</div><div><div class="rv-name">Jean-Pierre</div><div class="rv-verified">✓ Verified</div></div></div><div class="rv-stars">★★★★★</div><p class="rv-text">"At 58, I thought my trekking days were over. VertiKnee proved me wrong. Merci."</p></div>
     </div>
   </div>
 </section>

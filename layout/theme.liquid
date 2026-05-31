@@ -4,81 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page_title }}{% if current_tags %} – tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} – Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}</title>
-  
-  {% if page_description %}
-  <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
-  
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
   {{ content_for_header }}
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: {{ settings.color_bg }};
-      --surface: #141414;
-      --text: #f5f5f5;
-      --text-dim: #999;
-      --accent: {{ settings.color_accent }};
-      --green: #2d5a3d;
-      --blue: #1a3a5c;
-      --border: rgba(255,255,255,0.06);
-      --radius: 12px;
+      --brand-blue: #1F69F0;
+      --brand-dark: #101723;
+      --brand-white: #FFFFFF;
+      --brand-light: #f5f7fa;
+      --brand-gray: #6b7280;
+      --brand-border: #e5e7eb;
+      --radius: 10px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--brand-white);
+      color: var(--brand-dark);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-    .ann-bar {
-      background: var(--accent);
-      color: #fff;
-      text-align: center;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Inter', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: 2px;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-cta {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
   </style>
 </head>
 <body>
   {% section 'announcement-bar' %}
   {% section 'header' %}
-  
-  <main role="main">
-    {{ content_for_layout }}
-  </main>
-  
+  <main>{{ content_for_layout }}</main>
   {% section 'footer' %}
 </body>
 </html>

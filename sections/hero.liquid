@@ -1,53 +1,37 @@
 <style>
-.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 80px 0; }
-.hero-content h1 { font-size: 52px; font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
-.hero-content h1 span { color: var(--accent); display: block; }
-.hero-tagline { font-size: 16px; color: var(--text-dim); margin-bottom: 32px; letter-spacing: 4px; text-transform: uppercase; }
-.hero-bullets { display: flex; gap: 24px; margin-bottom: 40px; }
-.hero-bullet { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
-.hero-bullet-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 10px; }
-.hero-img { width: 100%; aspect-ratio: 1; background: var(--surface); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); }
-.hero-img img { max-width: 90%; max-height: 90%; object-fit: contain; }
-.cta-btn { display: inline-block; background: var(--accent); color: #fff; padding: 16px 48px; border-radius: 8px; font-size: 18px; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
-.cta-btn:hover { transform: translateY(-2px); }
-.cta-price { display: inline-block; margin-left: 20px; font-size: 14px; color: var(--text-dim); }
-.cta-strike { text-decoration: line-through; margin-right: 8px; }
-@media (max-width: 768px) { .hero { grid-template-columns: 1fr; padding: 40px 0; gap: 32px; } .hero-content h1 { font-size: 32px; } }
+.hero { display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:80px 0; }
+.hero-content h1 { font-family:'Montserrat',sans-serif;font-size:52px;font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:16px;color:var(--brand-dark); }
+.hero-content h1 .blue { color:var(--brand-blue); }
+.hero-tagline { font-size:16px;color:var(--brand-gray);margin-bottom:32px;letter-spacing:4px;text-transform:uppercase; }
+.hero-bullets { display:flex;gap:24px;margin-bottom:40px; }
+.hero-bullet { display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500; }
+.hero-bullet svg { width:20px;height:20px;color:var(--brand-blue); }
+.cta-row { display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
+.cta-btn { display:inline-block;background:var(--brand-blue);color:#fff;padding:16px 48px;border-radius:8px;font-size:18px;font-weight:700;text-decoration:none;transition:transform .2s; }
+.cta-btn:hover { transform:translateY(-2px); }
+.cta-sub { font-size:14px;color:var(--brand-gray); }
+.cta-strike { text-decoration:line-through;margin-right:6px; }
+.hero-media { width:100%;aspect-ratio:1;background:var(--brand-light);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;overflow:hidden; }
+.hero-media img { width:100%;height:100%;object-fit:cover; }
+@media (max-width:768px) { .hero { grid-template-columns:1fr;padding:40px 0;gap:32px; } .hero-content h1 { font-size:30px; } }
 </style>
 
 <section class="container hero">
   <div class="hero-content">
-    <h1><span>GO HIGHER.</span> GO FARTHER. WITHOUT PAIN.</h1>
+    <h1><span class="blue">GO HIGHER.</span><br>GO FARTHER.<br>WITHOUT PAIN.</h1>
     <div class="hero-tagline">Professional Knee Support for Trekkers</div>
     <div class="hero-bullets">
-      <div class="hero-bullet"><span class="hero-bullet-icon">✓</span> 3D Compression</div>
-      <div class="hero-bullet"><span class="hero-bullet-icon">✓</span> Ultralight 80g</div>
-      <div class="hero-bullet"><span class="hero-bullet-icon">✓</span> Anti-Slip Grip</div>
+      <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>3D Compression</div>
+      <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Anti-Slip Grip</div>
+      <div class="hero-bullet"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Ultralight 80g</div>
     </div>
-    <div>
+    <div class="cta-row">
       <a href="/products/knee-sleeve" class="cta-btn">GET YOURS — €24.99</a>
-      <span class="cta-price"><span class="cta-strike">€49.99</span> 50% OFF</span>
+      <span class="cta-sub"><span class="cta-strike">€49.99</span> 50% OFF</span>
     </div>
   </div>
-  <div class="hero-img">
-    {% if section.settings.hero_image %}
-      <img src="{{ section.settings.hero_image | img_url: '800x' }}" alt="VertiKnee Knee Support">
-    {% else %}
-      <span style="font-size:48px;">⛰️</span>
-    {% endif %}
+  <div class="hero-media">
+    <img src="{{ 'hero.jpg' | asset_url }}" alt="VertiKnee on mountain trail">
   </div>
 </section>
-
-{% schema %}
-{
-  "name": "Hero",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero Image"
-    }
-  ],
-  "presets": [{ "name": "Hero" }]
-}
-{% endschema %}
+{% schema %}{"name":"Hero","settings":[],"presets":[{"name":"Hero"}]}{% endschema %}

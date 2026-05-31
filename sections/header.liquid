@@ -1,5 +1,18 @@
-<nav class="nav">
-  <a href="/" class="nav-logo" style="text-decoration:none;color:var(--text);"><span>V</span>ERTIKNEE</a>
-  <a href="/products/knee-sleeve" class="nav-cta" style="text-decoration:none;">SHOP NOW</a>
+<style>
+.header { display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--brand-border);background:var(--brand-white); }
+.header-logo { height:40px; }
+.header-logo img { height:100%; }
+.header-cta {
+  background:var(--brand-blue);color:var(--brand-white);border:none;
+  padding:12px 28px;border-radius:6px;font-weight:700;font-size:14px;
+  text-decoration:none;transition:opacity .2s;
+}
+.header-cta:hover { opacity:.9; }
+</style>
+<nav class="header">
+  <a href="/" class="header-logo">
+    <img src="{{ 'logo-full-color.jpg' | asset_url }}" alt="VertiKnee">
+  </a>
+  <a href="/products/knee-sleeve" class="header-cta">SHOP NOW</a>
 </nav>
 {% schema %}{"name":"Header","settings":[]}{% endschema %}
