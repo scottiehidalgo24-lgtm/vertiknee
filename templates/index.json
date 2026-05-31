@@ -1,10 +1,26 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
-    "features": { "type": "features" },
-    "product-section": { "type": "product-section" },
-    "reviews": { "type": "reviews" },
-    "faq": { "type": "faq" }
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "features": {
+      "type": "features",
+      "settings": {}
+    },
+    "benefits": {
+      "type": "reviews",
+      "settings": {}
+    },
+    "faq-section": {
+      "type": "faq",
+      "settings": {}
+    }
   },
-  "order": ["hero", "features", "product-section", "reviews", "faq"]
+  "order": [
+    "hero",
+    "features", 
+    "benefits",
+    "faq-section"
+  ]
 }
