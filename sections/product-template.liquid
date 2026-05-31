@@ -1,77 +1,128 @@
 <style>
 .pd { display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:80px 0; }
-.pd-img { aspect-ratio:1;background:var(--brand-light);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;overflow:hidden; }
-.pd-img img { max-width:85%;max-height:85%;object-fit:contain; }
-.pd-info { display:flex;flex-direction:column;gap:20px; }
-.pd-info h2 { font-family:'Montserrat',sans-serif;font-size:34px;font-weight:800;color:var(--brand-dark); }
-.pd-rating { display:flex;align-items:center;gap:8px; }
-.pd-stars { color:#f59e0b;font-size:16px; }
-.pd-rating-count { color:var(--brand-gray);font-size:14px; }
+.pd-gallery { display:flex;flex-direction:column;gap:12px; }
+.pd-main-img { aspect-ratio:1;background:var(--brand-light);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;overflow:hidden; }
+.pd-main-img img { width:100%;height:100%;object-fit:cover; }
+.pd-thumbs { display:flex;gap:8px; }
+.pd-thumb { width:64px;height:64px;border-radius:6px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .2s; }
+.pd-thumb:hover,.pd-thumb.active { border-color:var(--brand-blue); }
+.pd-thumb img { width:100%;height:100%;object-fit:cover; }
+.pd-info { display:flex;flex-direction:column;gap:16px; }
+.pd-info h2 { font-family:'Montserrat',sans-serif;font-size:30px;font-weight:800;color:var(--brand-dark);line-height:1.2; }
+.pd-rating { display:flex;align-items:center;gap:8px;font-size:14px;color:var(--brand-gray); }
+.pd-stars { color:#f59e0b; }
 .pd-price-row { display:flex;align-items:center;gap:12px; }
 .pd-price { font-size:32px;font-weight:900;color:var(--brand-blue); }
 .pd-old-price { font-size:18px;color:var(--brand-gray);text-decoration:line-through; }
 .pd-badge { background:#ecfdf5;color:#059669;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600; }
 .pd-desc { font-size:15px;color:var(--brand-gray);line-height:1.7; }
-.bundle-opts { display:flex;gap:8px;flex-wrap:wrap; }
-.bundle-opt { background:var(--brand-white);border:1px solid var(--brand-border);padding:12px 18px;border-radius:8px;font-size:14px;cursor:pointer;transition:border-color .2s; }
-.bundle-opt.best { border:2px solid var(--brand-blue);background:#eff6ff; }
-.bundle-opt span { color:var(--brand-blue);font-size:12px;font-weight:600; }
-.pd-buy { display:flex;gap:12px;align-items:center; }
-.pd-qty { background:var(--brand-white);border:1px solid var(--brand-border);color:var(--brand-dark);padding:14px 20px;border-radius:8px;font-size:16px;width:70px;text-align:center; }
+.pd-variant { margin-top:8px; }
+.pd-variant label { font-size:13px;font-weight:600;color:var(--brand-dark);display:block;margin-bottom:6px; }
+.pd-variant select { width:100%;padding:14px 16px;border:1px solid var(--brand-border);border-radius:8px;font-size:16px;color:var(--brand-dark);background:var(--brand-white); }
+.pd-qty-row { display:flex;align-items:center;gap:12px; }
+.pd-qty { border:1px solid var(--brand-border);border-radius:8px;padding:14px;font-size:16px;width:70px;text-align:center; }
 .pd-cart { flex:1;background:var(--brand-blue);color:#fff;border:none;padding:16px 32px;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;transition:opacity .2s; }
 .pd-cart:hover { opacity:.9; }
-.pd-badges { display:flex;gap:16px;margin-top:8px; }
+.pd-badges { display:flex;gap:16px;margin-top:8px;flex-wrap:wrap; }
 .pd-badge-item { display:flex;align-items:center;gap:6px;font-size:12px;color:var(--brand-gray); }
-.pd-checklist { margin-top:12px; }
-.pd-checklist p { font-size:14px;margin-bottom:6px;color:var(--brand-dark); }
-@media (max-width:768px) { .pd { grid-template-columns:1fr;gap:32px; } .pd-buy { flex-direction:column; } }
+.pd-checklist { margin-top:8px; }
+.pd-checklist p { font-size:14px;margin-bottom:4px;color:var(--brand-dark); }
+.pd-bundle-note { background:var(--brand-light);padding:16px;border-radius:8px;font-size:14px;color:var(--brand-dark);margin-top:8px; }
+.pd-bundle-note strong { color:var(--brand-blue); }
+@media (max-width:768px) { .pd { grid-template-columns:1fr;gap:32px;padding:40px 0; } }
 </style>
 
 <section class="container pd">
-  <div class="pd-img">
-    <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}">
+  <div class="pd-gallery">
+    <div class="pd-main-img">
+      <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" id="mainImg">
+    </div>
+    <div class="pd-thumbs">
+      {% for image in product.images %}
+      <div class="pd-thumb {% if forloop.first %}active{% endif %}" onclick="document.getElementById('mainImg').src='{{ image | img_url: '800x' }}'">
+        <img src="{{ image | img_url: '120x' }}" alt="{{ image.alt }}">
+      </div>
+      {% endfor %}
+    </div>
   </div>
+
   <div class="pd-info">
-    <h2>{{ product.title }}</h2>
-    <div class="pd-rating">
-      <span class="pd-stars">★★★★★</span>
-      <span class="pd-rating-count">4.7 · 11,364 reviews · 50,000+ sold</span>
+    <div>
+      <div class="pd-rating">
+        <span class="pd-stars">★★★★★</span> 4.8 · Oltre 5.000 ordini
+      </div>
+      <h2>{{ product.title }}</h2>
     </div>
     <div class="pd-price-row">
-      <span class="pd-price">{{ product.price | money }}</span>
-      <span class="pd-old-price">{{ product.compare_at_price | money }}</span>
-      {% if product.compare_at_price > product.price %}<span class="pd-badge">SAVE 50%</span>{% endif %}
+      <span class="pd-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+      <span class="pd-old-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+      {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}<span class="pd-badge">RISPARMIA 50%</span>{% endif %}
     </div>
-    <p class="pd-desc">{{ product.description | strip_html | truncate: 250 }}</p>
 
-    <div>
-      <p style="font-size:13px;font-weight:600;color:var(--brand-dark);margin-bottom:8px;">BUNDLE & SAVE:</p>
-      <div class="bundle-opts">
-        <div class="bundle-opt">1 × {{ product.price | money }}</div>
-        <div class="bundle-opt best">2 × SAVE 20%</div>
-        <div class="bundle-opt">3 × SAVE 30%</div>
+    <p class="pd-desc">{{ product.description | strip_html | truncate: 300 }}</p>
+
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+      {% if product.variants.size > 1 %}
+      <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
+        {% if product.options.size > 0 and product.options[0].name == 'Colore' %}
+        <div>
+          <label>COLORE: <strong>{{ product.selected_or_first_available_variant.option1 }}</strong></label>
+          <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
+            {% for value in product.options[0].values %}
+            <button type="button" onclick="selectColor('{{ value }}')" class="color-swatch {% if value == product.selected_or_first_available_variant.option1 %}active{% endif %}" data-color="{{ value }}" style="width:44px;height:44px;border-radius:50%;border:3px solid {% if value == product.selected_or_first_available_variant.option1 %}var(--brand-blue){% else %}var(--brand-border){% endif %};background:{% if value == 'Nero' %}#1a1a1a{% elsif value == 'Blu' %}#1F69F0{% else %}#e53e3e{% endif %};cursor:pointer;transition:border-color .2s;" title="{{ value }}"></button>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        <div>
+          <label for="variant-select">TAGLIA</label>
+          <select id="variant-select" name="id" onchange="this.form.submit()">
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}>
+              {{ variant.option2 }} — {{ variant.price | money }}
+            </option>
+          {% endfor %}
+          </select>
+        </div>
       </div>
-    </div>
+      <script>
+        function selectColor(color) {
+          document.querySelectorAll('.color-swatch').forEach(b => b.style.borderColor = 'var(--brand-border)');
+          document.querySelector('.color-swatch[data-color="' + color + '"]').style.borderColor = 'var(--brand-blue)';
+          var size = document.getElementById('variant-select').value;
+          var selects = document.querySelectorAll('#variant-select option');
+          selects.forEach(opt => {
+            if (opt.text.trim().startsWith(size) && opt.text.includes(color)) {
+              document.getElementById('variant-select').value = opt.value;
+            }
+          });
+        }
+      </script>
+      {% endif %}
 
-    <div class="pd-buy">
-      <form method="post" action="/cart/add" style="display:flex;gap:12px;width:100%;">
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <div class="pd-qty-row" style="margin-top:16px;">
         <input type="number" name="quantity" value="1" min="1" class="pd-qty">
-        <button type="submit" class="pd-cart">ADD TO CART</button>
-      </form>
+        <button type="submit" class="pd-cart">AGGIUNGI AL CARRELLO</button>
+      </div>
+    </form>
+
+    <div class="pd-bundle-note">
+      💡 <strong>Best Value:</strong> acquista 2 pezzi e risparmia il 20%. Aggiungi quantità 2 nel carrello.
     </div>
 
     <div class="pd-badges">
-      <div class="pd-badge-item">🔄 30-Day Guarantee</div>
-      <div class="pd-badge-item">📦 Free Shipping</div>
-      <div class="pd-badge-item">🔒 Secure Checkout</div>
+      <div class="pd-badge-item">🔄 Prova 30 Giorni</div>
+      <div class="pd-badge-item">📦 Spedizione Tracciata</div>
+      <div class="pd-badge-item">🔒 Pagamento Sicuro</div>
     </div>
 
     <div class="pd-checklist">
-      <p>✅ 3D Anatomic Compression</p>
-      <p>✅ Anti-Slip Silicone Grip</p>
-      <p>✅ Breathable Tech Fabric</p>
-      <p>✅ Ultralight — 80g</p>
+      <p>✅ Supporto mirato in discesa</p>
+      <p>✅ Grip antiscivolo in silicone</p>
+      <p>✅ Tessuto traspirante e leggero</p>
+      <p>✅ Compatta — sta nello zaino</p>
     </div>
   </div>
 </section>
