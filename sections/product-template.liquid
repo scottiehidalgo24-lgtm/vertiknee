@@ -1,0 +1,77 @@
+<style>
+.product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; padding: 80px 0; }
+.product-main-img { aspect-ratio: 1; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.product-main-img img { max-width: 85%; max-height: 85%; }
+.product-info { display: flex; flex-direction: column; gap: 20px; }
+.product-info h2 { font-size: 36px; font-weight: 800; }
+.product-rating { display: flex; align-items: center; gap: 8px; }
+.stars { color: #f5a623; font-size: 18px; }
+.rating-count { color: var(--text-dim); font-size: 14px; }
+.product-price-row { display: flex; align-items: center; gap: 12px; }
+.current-price { font-size: 32px; font-weight: 900; color: var(--accent); }
+.old-price { font-size: 18px; color: var(--text-dim); text-decoration: line-through; }
+.sale-badge { background: var(--green); color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; }
+.bundle-opts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.bundle-opt { background: var(--surface); border: 1px solid var(--border); padding: 10px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+.bundle-opt.best { border: 2px solid var(--accent); }
+.bundle-opt span { color: var(--green); font-size: 12px; }
+.buy-section { display: flex; gap: 16px; align-items: center; }
+.guarantee-badges { display: flex; gap: 16px; margin-top: 12px; }
+.badge { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-dim); }
+@media (max-width: 768px) { .product-detail { grid-template-columns: 1fr; gap: 32px; } .buy-section { flex-direction: column; } }
+</style>
+
+<section class="container product-detail">
+  <div class="product-main-img">
+    <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}">
+  </div>
+  <div class="product-info">
+    <h2>{{ product.title }}</h2>
+    <div class="product-rating">
+      <span class="stars">★★★★★</span>
+      <span class="rating-count">4.7 • 11,364 reviews • 50,000+ sold</span>
+    </div>
+    <div class="product-price-row">
+      <span class="current-price">{{ product.price | money }}</span>
+      <span class="old-price">{{ product.compare_at_price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+      <span class="sale-badge">SAVE {{ product.compare_at_price | minus: product.price | money }}</span>
+      {% endif %}
+    </div>
+    <p style="color:var(--text-dim);font-size:14px;">{{ product.description | strip_html | truncate: 200 }}</p>
+
+    <div>
+      <p style="color:var(--text-dim);font-size:14px;margin-bottom:8px;">BUNDLE & SAVE:</p>
+      <div class="bundle-opts">
+        <div class="bundle-opt">1 × {{ product.price | money }}</div>
+        <div class="bundle-opt best">2 × {{ product.price | times: 2 | money }} <span>SAVE</span></div>
+        <div class="bundle-opt">3 × {{ product.price | times: 3 | money }} <span>SAVE MORE</span></div>
+      </div>
+    </div>
+
+    <div class="buy-section">
+      <form method="post" action="/cart/add" style="display:flex;gap:16px;width:100%;">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="number" name="quantity" value="1" min="1" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:14px 20px;border-radius:8px;font-size:16px;width:80px;text-align:center;">
+        <button type="submit" style="flex:1;background:var(--accent);color:#fff;border:none;padding:16px 32px;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">ADD TO CART — {{ product.price | money }}</button>
+      </form>
+    </div>
+
+    <div class="guarantee-badges">
+      <div class="badge">🔄 30-Day Guarantee</div>
+      <div class="badge">📦 Free Shipping</div>
+      <div class="badge">🔒 Secure Checkout</div>
+    </div>
+
+    <div style="margin-top:12px;font-size:14px;">
+      <p>✅ 3D Anatomic Compression</p>
+      <p>✅ Anti-Slip Silicone Grip</p>
+      <p>✅ Breathable Tech Fabric</p>
+      <p>✅ Ultralight — 80g</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{"name":"Product Template","settings":[],"presets":[{"name":"Product"}]}
+{% endschema %}

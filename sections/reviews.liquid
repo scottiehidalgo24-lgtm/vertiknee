@@ -1,0 +1,23 @@
+<style>
+.reviews { padding: 80px 0; background: var(--surface); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.review-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+.review-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.review-name { font-size: 14px; font-weight: 600; }
+.review-verified { font-size: 11px; color: var(--green); }
+.review-text { font-size: 14px; color: var(--text-dim); font-style: italic; margin-top: 8px; }
+.stars { color: #f5a623; font-size: 16px; }
+@media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+</style>
+<section class="reviews">
+  <div class="container">
+    <h2 class="section-title">What Trekkers Say</h2>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-header"><div class="review-avatar">MT</div><div><div class="review-name">Marco T.</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"Descended 1200 meters without stopping. First time in 3 years."</p></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar">SL</div><div><div class="review-name">Sarah L.</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"4 hikes later, I bought one for my other knee too. Swiss Alps tested."</p></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar">JP</div><div><div class="review-name">Jean-Pierre</div><div class="review-verified">✓ Verified</div></div></div><div class="stars">★★★★★</div><p class="review-text">"At 58, I thought my trekking days were over. VertiKnee proved me wrong."</p></div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Reviews","settings":[],"presets":[{"name":"Reviews"}]}{% endschema %}

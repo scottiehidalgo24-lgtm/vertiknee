@@ -1,0 +1,27 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "VertiKnee",
+    "theme_version": "1.0.0",
+    "theme_author": "VertiKnee",
+    "theme_documentation_url": "https://vertiknee.shop",
+    "theme_support_email": "vertiknee.official@gmail.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background",
+        "default": "#0d0d0d"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#e85d3a"
+      }
+    ]
+  }
+]

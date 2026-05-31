@@ -1,0 +1,25 @@
+<style>
+.features { padding: 80px 0; }
+.section-title { text-align: center; font-size: 32px; font-weight: 800; margin-bottom: 48px; letter-spacing: -0.5px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; text-align: center; transition: border-color 0.3s; }
+.feature-card:hover { border-color: var(--accent); }
+.feature-icon { font-size: 36px; margin-bottom: 16px; }
+.feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.feature-card p { font-size: 14px; color: var(--text-dim); }
+@media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } }
+</style>
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">Why VertiKnee™</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🧬</div><h3>3D Anatomic Compression</h3><p>Targets patellar tendon with precision, reducing downhill knee pain.</p></div>
+      <div class="feature-card"><div class="feature-icon">🫁</div><h3>Breathable Tech Fabric</h3><p>Moisture-wicking 4-way stretch. Stays dry after 8+ hours on the trail.</p></div>
+      <div class="feature-card"><div class="feature-icon">🛡️</div><h3>Anti-Slip Silicone Grip</h3><p>Inner gel strips keep the sleeve locked in place. Won't roll down mid-hike.</p></div>
+      <div class="feature-card"><div class="feature-icon">⚡</div><h3>Ultralight 80g</h3><p>You won't feel it until you realize you've walked 15km without knee pain.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎒</div><h3>Packs Flat</h3><p>Roll it, fold it, clip it. Zero bulk in your backpack.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔄</div><h3>30-Day Trail Guarantee</h3><p>Try it on 3 hikes. If your knees don't feel better, full refund.</p></div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Features","settings":[],"presets":[{"name":"Features"}]}{% endschema %}

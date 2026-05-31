@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "features": { "type": "features" },
+    "product-section": { "type": "product-section" },
+    "reviews": { "type": "reviews" },
+    "faq": { "type": "faq" }
+  },
+  "order": ["hero", "features", "product-section", "reviews", "faq"]
+}

@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "product-template": { "type": "product-template" },
+    "reviews": { "type": "reviews" },
+    "faq": { "type": "faq" }
+  },
+  "order": ["product-template", "reviews", "faq"]
+}
