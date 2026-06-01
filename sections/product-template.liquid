@@ -70,19 +70,25 @@
         <div>
           <label>COLORE: <strong id="colorLabel">Nero</strong></label>
           <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-            <button type="button" onclick="selectColor('Nero')" class="color-swatch" data-color="Nero" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-blue);background:#1a1a1a;cursor:pointer;transition:border-color .2s;" title="Nero"></button>
-            <button type="button" onclick="selectColor('Blu')" class="color-swatch" data-color="Blu" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:#1F69F0;cursor:pointer;transition:border-color .2s;" title="Blu"></button>
-            <button type="button" onclick="selectColor('Rosso')" class="color-swatch" data-color="Rosso" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:#e53e3e;cursor:pointer;transition:border-color .2s;" title="Rosso"></button>
+            {% assign shown_colors = '' %}
+            {% for variant in product.variants %}
+              {% assign vc = variant.title | split: ' / ' | first %}
+              {% unless shown_colors contains vc %}
+                {% assign shown_colors = shown_colors | append: vc | append: ',' %}
+                <button type="button" onclick="selectColor('{{ vc }}')" class="color-swatch" data-color="{{ vc }}" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:{% if vc == 'Nero' %}#1a1a1a{% elsif vc == 'Blu' %}#1F69F0{% elsif vc == 'Rosso' %}#e53e3e{% else %}#ccc{% endif %};cursor:pointer;transition:border-color .2s;" title="{{ vc }}"></button>
+              {% endunless %}
+            {% endfor %}
           </div>
         </div>
         <div>
           <label for="variant-select">TAGLIA</label>
           <select id="variant-select" name="id" onchange="this.form.submit()">
             {% for variant in product.variants %}
-            {% assign size_idx = forloop.index0 | modulo: 3 %}
-            {% if size_idx == 0 %}{% assign sz = 'M' %}{% elsif size_idx == 1 %}{% assign sz = 'L' %}{% else %}{% assign sz = 'XL' %}{% endif %}
-            <option value="{{ variant.id }}" data-color="{% cycle 'Nero', 'Nero', 'Nero', 'Blu', 'Blu', 'Blu', 'Rosso', 'Rosso', 'Rosso' %}" data-size="{{ sz }}">
-              {{ sz }} — {{ variant.price | money }}
+            {% assign v_parts = variant.title | split: ' / ' %}
+            {% assign vcolor = v_parts[0] %}
+            {% assign vsize = v_parts[1] %}
+            <option value="{{ variant.id }}" data-color="{{ vcolor }}" data-size="{{ vsize }}">
+              {{ vsize }} — {{ variant.price | money }}
             </option>
             {% endfor %}
           </select>
