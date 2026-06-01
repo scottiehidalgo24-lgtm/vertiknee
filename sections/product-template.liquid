@@ -79,8 +79,10 @@
           <label for="variant-select">TAGLIA</label>
           <select id="variant-select" name="id" onchange="this.form.submit()">
             {% for variant in product.variants %}
-            <option value="{{ variant.id }}" data-color="{% cycle 'Nero', 'Nero', 'Nero', 'Blu', 'Blu', 'Blu', 'Rosso', 'Rosso', 'Rosso' %}">
-              {{ variant.option1 }} — {{ variant.price | money }}
+            {% assign size_idx = forloop.index0 | modulo: 3 %}
+            {% if size_idx == 0 %}{% assign sz = 'S' %}{% elsif size_idx == 1 %}{% assign sz = 'M' %}{% else %}{% assign sz = 'L' %}{% endif %}
+            <option value="{{ variant.id }}" data-color="{% cycle 'Nero', 'Nero', 'Nero', 'Blu', 'Blu', 'Blu', 'Rosso', 'Rosso', 'Rosso' %}" data-size="{{ sz }}">
+              {{ sz }} — {{ variant.price | money }}
             </option>
             {% endfor %}
           </select>
@@ -92,12 +94,12 @@
           var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
           if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
           var sel = document.getElementById('variant-select');
-          var currentIdx = sel.selectedIndex;
-          var currentSizeIdx = currentIdx % 3;
-          var colorOffsets = { 'Nero': 0, 'Blu': 3, 'Rosso': 6 };
-          var newIdx = colorOffsets[color] + currentSizeIdx;
-          if (newIdx < sel.options.length) {
-            sel.selectedIndex = newIdx;
+          var currentSize = sel.selectedOptions[0].getAttribute('data-size');
+          for (var i = 0; i < sel.options.length; i++) {
+            if (sel.options[i].getAttribute('data-size') === currentSize && sel.options[i].getAttribute('data-color') === color) {
+              sel.selectedIndex = i;
+              break;
+            }
           }
           document.getElementById('colorLabel').textContent = color;
         }
