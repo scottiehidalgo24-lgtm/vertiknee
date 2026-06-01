@@ -88,7 +88,7 @@
             {% assign vcolor = v_parts[0] %}
             {% assign vsize = v_parts[1] %}
             <option value="{{ variant.id }}" data-color="{{ vcolor }}" data-size="{{ vsize }}">
-              {{ vsize }} — {{ variant.price | money }}
+              {{ vsize }} - {{ vcolor }} — {{ variant.price | money }}
             </option>
             {% endfor %}
           </select>
@@ -100,15 +100,26 @@
           var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
           if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
           var sel = document.getElementById('variant-select');
-          var currentSize = sel.selectedOptions[0].getAttribute('data-size');
+          // Show only options for selected color, hide others
+          var foundSelected = false;
           for (var i = 0; i < sel.options.length; i++) {
-            if (sel.options[i].getAttribute('data-size') === currentSize && sel.options[i].getAttribute('data-color') === color) {
-              sel.selectedIndex = i;
-              break;
+            if (sel.options[i].getAttribute('data-color') === color) {
+              sel.options[i].style.display = '';
+              if (!foundSelected) {
+                sel.selectedIndex = i;
+                foundSelected = true;
+              }
+            } else {
+              sel.options[i].style.display = 'none';
             }
           }
           document.getElementById('colorLabel').textContent = color;
         }
+        // Init: filter to first color on load
+        (function() {
+          var firstColor = document.querySelector('.color-swatch');
+          if (firstColor) selectColor(firstColor.getAttribute('data-color'));
+        })();
       </script>
       {% endif %}
 
