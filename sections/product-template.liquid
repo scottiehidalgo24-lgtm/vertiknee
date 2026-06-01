@@ -80,7 +80,7 @@
           <select id="variant-select" name="id" onchange="this.form.submit()">
             {% for variant in product.variants %}
             {% assign size_idx = forloop.index0 | modulo: 3 %}
-            {% if size_idx == 0 %}{% assign sz = 'S' %}{% elsif size_idx == 1 %}{% assign sz = 'M' %}{% else %}{% assign sz = 'L' %}{% endif %}
+            {% if size_idx == 0 %}{% assign sz = 'M' %}{% elsif size_idx == 1 %}{% assign sz = 'L' %}{% else %}{% assign sz = 'XL' %}{% endif %}
             <option value="{{ variant.id }}" data-color="{% cycle 'Nero', 'Nero', 'Nero', 'Blu', 'Blu', 'Blu', 'Rosso', 'Rosso', 'Rosso' %}" data-size="{{ sz }}">
               {{ sz }} — {{ variant.price | money }}
             </option>
