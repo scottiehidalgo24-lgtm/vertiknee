@@ -101,7 +101,7 @@
           var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
           if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
           var sel = document.getElementById('variant-select');
-          // Collect matching options and sort by size
+          // Collect matched options
           var matched = [];
           for (var i = 0; i < sel.options.length; i++) {
             sel.options[i].style.display = 'none';
@@ -109,14 +109,18 @@
               matched.push(sel.options[i]);
             }
           }
-          matched.sort(function(a, b) { return (sizeOrder[b.getAttribute('data-size')] || 99) - (sizeOrder[a.getAttribute('data-size')] || 99); });
-          // Move sorted items to top and show them
+          // Sort by size ascending
+          matched.sort(function(a, b) { return (sizeOrder[a.getAttribute('data-size')] || 99) - (sizeOrder[b.getAttribute('data-size')] || 99); });
+          // Remove matched from DOM and re-insert in sorted order at the end
+          for (var i = 0; i < matched.length; i++) {
+            sel.removeChild(matched[i]);
+          }
           for (var i = 0; i < matched.length; i++) {
             matched[i].style.display = '';
-            sel.insertBefore(matched[i], sel.firstChild);
+            sel.appendChild(matched[i]);
           }
           if (matched.length > 0) {
-            sel.selectedIndex = 0;
+            sel.selectedIndex = sel.options.length - matched.length;
           }
           document.getElementById('colorLabel').textContent = color;
         }
