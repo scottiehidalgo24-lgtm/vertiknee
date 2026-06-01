@@ -82,7 +82,7 @@
         </div>
         <div>
           <label for="variant-select">TAGLIA</label>
-          <select id="variant-select" name="id" onchange="this.form.submit()">
+          <select id="variant-select" name="id">
             {% for variant in product.variants %}
             {% assign v_parts = variant.title | split: ' / ' %}
             {% assign vcolor = v_parts[0] %}
