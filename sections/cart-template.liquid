@@ -53,7 +53,11 @@
     </div>
 
     <div class="cart-footer">
-      {% if cart.item_count >= 2 %}
+      {% assign total_qty = 0 %}
+      {% for item in cart.items %}
+        {% assign total_qty = total_qty | plus: item.quantity %}
+      {% endfor %}
+      {% if total_qty >= 2 %}
         {% assign discount_amount = cart.total_price | times: 20 | divided_by: 100 %}
         {% assign discounted_total = cart.total_price | minus: discount_amount %}
         <div style="width:100%;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:16px;margin-bottom:16px;text-align:center;">
