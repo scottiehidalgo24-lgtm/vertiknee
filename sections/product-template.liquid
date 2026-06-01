@@ -95,23 +95,30 @@
         </div>
       </div>
       <script>
+        var sizeOrder = { 'M': 1, 'L': 2, 'XL': 3 };
         function selectColor(color) {
           document.querySelectorAll('.color-swatch').forEach(function(b) { b.style.borderColor = 'var(--brand-border)'; });
           var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
           if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
           var sel = document.getElementById('variant-select');
-          // Show only options for selected color, hide others
-          var foundSelected = false;
+          // Collect matching options and sort by size
+          var matched = [];
           for (var i = 0; i < sel.options.length; i++) {
-            if (sel.options[i].getAttribute('data-color') === color) {
-              sel.options[i].style.display = '';
-              if (!foundSelected) {
-                sel.selectedIndex = i;
-                foundSelected = true;
-              }
-            } else {
-              sel.options[i].style.display = 'none';
+            var opt = sel.options[i];
+            if (opt.getAttribute('data-color') === color) {
+              matched.push({ index: i, size: opt.getAttribute('data-size'), element: opt });
             }
+          }
+          matched.sort(function(a, b) { return (sizeOrder[a.size] || 99) - (sizeOrder[b.size] || 99); });
+          // Hide all, then show sorted
+          for (var i = 0; i < sel.options.length; i++) {
+            sel.options[i].style.display = 'none';
+          }
+          for (var i = 0; i < matched.length; i++) {
+            matched[i].element.style.display = '';
+          }
+          if (matched.length > 0) {
+            sel.selectedIndex = matched[0].index;
           }
           document.getElementById('colorLabel').textContent = color;
         }
