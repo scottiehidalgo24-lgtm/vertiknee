@@ -104,21 +104,19 @@
           // Collect matching options and sort by size
           var matched = [];
           for (var i = 0; i < sel.options.length; i++) {
-            var opt = sel.options[i];
-            if (opt.getAttribute('data-color') === color) {
-              matched.push({ index: i, size: opt.getAttribute('data-size'), element: opt });
+            sel.options[i].style.display = 'none';
+            if (sel.options[i].getAttribute('data-color') === color) {
+              matched.push(sel.options[i]);
             }
           }
-          matched.sort(function(a, b) { return (sizeOrder[a.size] || 99) - (sizeOrder[b.size] || 99); });
-          // Hide all, then show sorted
-          for (var i = 0; i < sel.options.length; i++) {
-            sel.options[i].style.display = 'none';
-          }
+          matched.sort(function(a, b) { return (sizeOrder[b.getAttribute('data-size')] || 99) - (sizeOrder[a.getAttribute('data-size')] || 99); });
+          // Move sorted items to top and show them
           for (var i = 0; i < matched.length; i++) {
-            matched[i].element.style.display = '';
+            matched[i].style.display = '';
+            sel.insertBefore(matched[i], sel.firstChild);
           }
           if (matched.length > 0) {
-            sel.selectedIndex = matched[0].index;
+            sel.selectedIndex = 0;
           }
           document.getElementById('colorLabel').textContent = color;
         }
