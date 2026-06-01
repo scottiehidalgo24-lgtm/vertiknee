@@ -65,80 +65,42 @@
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
       {% if product.variants.size > 1 %}
-      {% assign colors = '' %}
-      {% for variant in product.variants %}
-        {% assign parts = variant.title | split: ' / ' %}
-        {% assign vcolor = parts[0] %}
-        {% unless colors contains vcolor %}
-          {% assign colors = colors | append: vcolor | append: '|' %}
-        {% endunless %}
-      {% endfor %}
-      {% assign color_list = colors | split: '|' %}
-      {% assign has_colors = false %}
-      {% if color_list.size > 3 %}{% assign has_colors = true %}{% endif %}
-      {% if has_colors == false and product.options.size > 1 %}{% assign has_colors = true %}{% endif %}
-      {% if has_colors %}
       <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
-        {% assign current_variant_title = product.selected_or_first_available_variant.title | split: ' / ' %}
-        {% assign current_color = current_variant_title[0] %}
-        {% assign current_size = current_variant_title[1] %}
         <div>
-          <label>COLORE: <strong id="colorLabel">{{ current_color }}</strong></label>
+          <label>COLORE: <strong id="colorLabel">Nero</strong></label>
           <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-            {% for color_val in color_list %}
-            {% if color_val != '' %}
-            <button type="button" onclick="selectColor('{{ color_val }}')" class="color-swatch" data-color="{{ color_val }}" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:{% if color_val == 'Nero' %}#1a1a1a{% elsif color_val == 'Blu' %}#1F69F0{% elsif color_val == 'Rosso' %}#e53e3e{% else %}#ccc{% endif %};cursor:pointer;transition:border-color .2s;" title="{{ color_val }}"></button>
-            {% endif %}
-            {% endfor %}
+            <button type="button" onclick="selectColor('Nero')" class="color-swatch" data-color="Nero" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-blue);background:#1a1a1a;cursor:pointer;transition:border-color .2s;" title="Nero"></button>
+            <button type="button" onclick="selectColor('Blu')" class="color-swatch" data-color="Blu" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:#1F69F0;cursor:pointer;transition:border-color .2s;" title="Blu"></button>
+            <button type="button" onclick="selectColor('Rosso')" class="color-swatch" data-color="Rosso" style="width:44px;height:44px;border-radius:50%;border:3px solid var(--brand-border);background:#e53e3e;cursor:pointer;transition:border-color .2s;" title="Rosso"></button>
           </div>
         </div>
         <div>
           <label for="variant-select">TAGLIA</label>
           <select id="variant-select" name="id" onchange="this.form.submit()">
             {% for variant in product.variants %}
-            {% assign vtitle_parts = variant.title | split: ' / ' %}
-            <option value="{{ variant.id }}" data-color="{{ vtitle_parts[0] }}" data-size="{{ vtitle_parts[1] }}">
-              {{ vtitle_parts[1] }} — {{ variant.price | money }}
-            </option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <script>
-        (function() {
-          var currentColor = '{{ current_color }}';
-          var sw = document.querySelector('.color-swatch[data-color="' + currentColor + '"]');
-          if (sw) sw.style.borderColor = 'var(--brand-blue)';
-        })();
-        function selectColor(color) {
-          document.querySelectorAll('.color-swatch').forEach(function(b) { b.style.borderColor = 'var(--brand-border)'; });
-          var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
-          if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
-          var sel = document.getElementById('variant-select');
-          var currentSize = sel.selectedOptions[0].getAttribute('data-size');
-          for (var i = 0; i < sel.options.length; i++) {
-            if (sel.options[i].getAttribute('data-size') === currentSize && sel.options[i].getAttribute('data-color') === color) {
-              sel.value = sel.options[i].value;
-              break;
-            }
-          }
-          document.getElementById('colorLabel').textContent = color;
-        }
-      </script>
-      {% else %}
-      <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
-        <div>
-          <label for="variant-select">{{ product.options[0].name | upcase }}</label>
-          <select id="variant-select" name="id" onchange="this.form.submit()">
-            {% for variant in product.variants %}
-            <option value="{{ variant.id }}">
+            <option value="{{ variant.id }}" data-color="{% cycle 'Nero', 'Nero', 'Nero', 'Blu', 'Blu', 'Blu', 'Rosso', 'Rosso', 'Rosso' %}">
               {{ variant.option1 }} — {{ variant.price | money }}
             </option>
             {% endfor %}
           </select>
         </div>
       </div>
-      {% endif %}
+      <script>
+        function selectColor(color) {
+          document.querySelectorAll('.color-swatch').forEach(function(b) { b.style.borderColor = 'var(--brand-border)'; });
+          var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
+          if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
+          var sel = document.getElementById('variant-select');
+          var currentIdx = sel.selectedIndex;
+          var currentSizeIdx = currentIdx % 3;
+          var colorOffsets = { 'Nero': 0, 'Blu': 3, 'Rosso': 6 };
+          var newIdx = colorOffsets[color] + currentSizeIdx;
+          if (newIdx < sel.options.length) {
+            sel.selectedIndex = newIdx;
+          }
+          document.getElementById('colorLabel').textContent = color;
+        }
+      </script>
       {% endif %}
 
       <div class="pd-qty-row" style="margin-top:16px;">
