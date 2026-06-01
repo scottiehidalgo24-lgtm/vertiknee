@@ -21,7 +21,6 @@
 .cart-total { font-size:20px;font-weight:800;color:var(--brand-dark); }
 .cart-checkout { background:var(--brand-blue);color:#fff;border:none;padding:16px 40px;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block; }
 .cart-note { text-align:center;margin-top:16px;font-size:13px;color:var(--brand-gray); }
-.cart-note img { height:24px;vertical-align:middle;margin:0 4px; }
 @media (max-width:768px) {
   .cart-item { flex-wrap:wrap; }
   .cart-item-price { text-align:left; }
@@ -30,7 +29,7 @@
 
 <section class="cart">
   <h1>IL TUO CARRELLO</h1>
-  <!-- CART_V4_DISCOUNT -->
+  <!-- CART_V5_FINAL -->
 
   {% if cart.item_count > 0 %}
   <form action="/cart" method="post">
@@ -53,29 +52,35 @@
       {% endfor %}
     </div>
 
+    {% assign total_qty = 0 %}
+    {% for item in cart.items %}
+      {% assign total_qty = total_qty | plus: item.quantity %}
+    {% endfor %}
+
     <div class="cart-footer">
-      {% if cart.item_count >= 1 %}
-        {% assign total_qty = 0 %}
-        {% for item in cart.items %}
-          {% assign total_qty = total_qty | plus: item.quantity %}
-        {% endfor %}
-        {% if total_qty >= 2 %}
-          {% assign discount_amount = cart.total_price | times: 20 | divided_by: 100 %}
-          {% assign discounted_total = cart.total_price | minus: discount_amount %}
-          <div style="width:100%;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:16px;margin-bottom:16px;text-align:center;">
-            🎉 <strong>20% DI SCONTO APPLICATO!</strong> acquistando 2+ pezzi<br>
-            <span style="font-size:14px;color:#059669;">Risparmi {{ discount_amount | money }} — paghi solo {{ discounted_total | money }} al checkout</span>
-          </div>
-        {% else %}
-          <div style="width:100%;background:#f0f7ff;border:1px solid #bdd7f5;border-radius:8px;padding:12px;margin-bottom:16px;text-align:center;font-size:13px;color:var(--brand-blue);">
-            💡 Aggiungi un altro pezzo e ottieni il <strong>20% di sconto</strong>!
-          </div>
-        {% endif %}
-      {% endif %}
       <div class="cart-total">Totale: {{ cart.total_price | money }}</div>
-      <button type="submit" name="checkout" class="cart-checkout">VAI AL PAGAMENTO</button>
+      <button type="submit" name="checkout" class="cart-checkout">AGGIORNA CARRELLO</button>
     </div>
   </form>
+
+  {% if total_qty >= 2 %}
+    {% assign discount_amount = cart.total_price | times: 20 | divided_by: 100 %}
+    {% assign discounted_total = cart.total_price | minus: discount_amount %}
+    <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:16px;margin-top:24px;text-align:center;">
+      🎉 <strong>20% DI SCONTO APPLICATO!</strong> acquistando 2+ pezzi<br>
+      <span style="font-size:14px;color:#059669;">Risparmi {{ discount_amount | money }} — paghi solo {{ discounted_total | money }}</span>
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <a href="/checkout?discount=VERTI20" class="cart-checkout">VAI AL PAGAMENTO CON SCONTO</a>
+    </div>
+  {% else %}
+    <div style="background:#f0f7ff;border:1px solid #bdd7f5;border-radius:8px;padding:12px;margin-top:24px;text-align:center;font-size:13px;color:var(--brand-blue);">
+      💡 Aggiungi un altro pezzo e ottieni il <strong>20% di sconto</strong>!
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <a href="/checkout" class="cart-checkout">VAI AL PAGAMENTO</a>
+    </div>
+  {% endif %}
 
   <div class="cart-note">
     🔒 Pagamento sicuro · Spedizione tracciata · Reso 30 giorni
