@@ -65,12 +65,23 @@
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
       {% if product.variants.size > 1 %}
+      {% assign color_option_index = 0 %}
+      {% assign size_option_index = 0 %}
+      {% for option in product.options %}
+        {% assign opt_lower = option.name | downcase %}
+        {% if opt_lower contains 'color' or opt_lower contains 'colore' %}
+          {% assign color_option_index = option.position %}
+        {% else %}
+          {% assign size_option_index = option.position %}
+        {% endif %}
+      {% endfor %}
+      {% if color_option_index > 0 %}
       <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
-        {% if product.options[0] and product.options[0].name == 'Colore' %}
         <div>
-          <label>COLORE: <strong>{{ product.selected_or_first_available_variant.option1 }}</strong></label>
+          <label>COLORE: <strong id="colorLabel">{{ product.selected_or_first_available_variant.option1 }}</strong></label>
           <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-            {% for value in product.options[0].values %}
+            {% assign color_values = product.options_by_name[product.options[color_option_index].name].values %}
+            {% for value in color_values %}
             <button type="button" onclick="selectColor('{{ value }}')" class="color-swatch {% if value == product.selected_or_first_available_variant.option1 %}active{% endif %}" data-color="{{ value }}" style="width:44px;height:44px;border-radius:50%;border:3px solid {% if value == product.selected_or_first_available_variant.option1 %}var(--brand-blue){% else %}var(--brand-border){% endif %};background:{% if value == 'Nero' %}#1a1a1a{% elsif value == 'Blu' %}#1F69F0{% else %}#e53e3e{% endif %};cursor:pointer;transition:border-color .2s;" title="{{ value }}"></button>
             {% endfor %}
           </div>
@@ -80,7 +91,7 @@
           <label for="variant-select">TAGLIA</label>
           <select id="variant-select" name="id" onchange="this.form.submit()">
             {% for variant in product.variants %}
-            <option value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}>
+            <option value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %} data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}">
               {{ variant.option2 }} — {{ variant.price | money }}
             </option>
           {% endfor %}
@@ -90,16 +101,36 @@
       <script>
         function selectColor(color) {
           document.querySelectorAll('.color-swatch').forEach(b => b.style.borderColor = 'var(--brand-border)');
-          document.querySelector('.color-swatch[data-color="' + color + '"]').style.borderColor = 'var(--brand-blue)');
-          var size = document.getElementById('variant-select').value;
-          var selects = document.querySelectorAll('#variant-select option');
-          selects.forEach(opt => {
-            if (opt.text.trim().startsWith(size) && opt.text.includes(color)) {
-              document.getElementById('variant-select').value = opt.value;
+          var clicked = document.querySelector('.color-swatch[data-color="' + color + '"]');
+          if (clicked) clicked.style.borderColor = 'var(--brand-blue)';
+          // Get current size from selected option
+          var sel = document.getElementById('variant-select');
+          var currentSize = sel.selectedOptions[0].getAttribute('data-size');
+          // Find matching variant
+          var opts = sel.options;
+          for (var i = 0; i < opts.length; i++) {
+            if (opts[i].getAttribute('data-size') === currentSize && opts[i].getAttribute('data-color') === color) {
+              sel.value = opts[i].value;
+              break;
             }
-          });
+          }
+          // Update label
+          document.getElementById('colorLabel').textContent = color;
         }
       </script>
+      {% else %}
+      <div class="pd-variant" style="display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <label for="variant-select">TAGLIA</label>
+          <select id="variant-select" name="id" onchange="this.form.submit()">
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}>
+              {{ variant.option1 }} — {{ variant.price | money }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
       {% endif %}
 
       <div class="pd-qty-row" style="margin-top:16px;">
