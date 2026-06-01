@@ -53,6 +53,14 @@
     </div>
 
     <div class="cart-footer">
+      {% if cart.item_count >= 2 %}
+        {% assign discount_amount = cart.total_price | times: 20 | divided_by: 100 %}
+        {% assign discounted_total = cart.total_price | minus: discount_amount %}
+        <div style="width:100%;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:16px;margin-bottom:16px;text-align:center;">
+          🎉 <strong>20% DI SCONTO APPLICATO!</strong> acquistando 2+ pezzi<br>
+          <span style="font-size:14px;color:#059669;">Risparmi {{ discount_amount | money }} — paghi solo {{ discounted_total | money }} al checkout</span>
+        </div>
+      {% endif %}
       <div class="cart-total">Totale: {{ cart.total_price | money }}</div>
       <button type="submit" name="checkout" class="cart-checkout">VAI AL PAGAMENTO</button>
     </div>
